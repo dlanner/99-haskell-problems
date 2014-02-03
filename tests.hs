@@ -17,4 +17,20 @@ problem4test1 = myLength [123, 456, 789] ~=? 3
 problem4test2 = myLength "Hello, world!" ~=? 13
 problem4tests = TestList [ problem4test1, problem4test2 ]
 
-main = runTestTT $ TestList [ problem1tests, problem2tests, problem3tests, problem4tests ]
+problem5test1 = myReverse "A man, a plan, a canal, panama!" ~=? "!amanap ,lanac a ,nalp a ,nam A"
+problem5test2 = myReverse [1,2,3,4] ~=? [4,3,2,1]
+problem5tests = TestList [ problem5test1, problem5test2 ]
+
+problem6test1 = isPalindrome [1,2,3] ~=? False
+problem6test2 = isPalindrome "madamimadam" ~=? True
+problem6test3 = isPalindrome [1,2,4,8,16,8,4,2,1] ~=? True
+problem6tests = TestList [ problem6test1, problem6test2, problem6test3 ]
+
+problem7test1 = flatten (Elem 5) ~=? [5]
+problem7test2 = flatten (List [Elem 1, List [Elem 2, List [Elem 3, Elem 4], Elem 5]]) ~=? [1,2,3,4,5]
+problem7test3 = flatten (List []::(NestedList Int)) ~=? []
+problem7tests = TestList [ problem7test1, problem7test2, problem7test3 ]
+
+main = runTestTT $ TestList
+	[ problem1tests, problem2tests, problem3tests, problem4tests, problem5tests
+	, problem6tests, problem7tests ]
