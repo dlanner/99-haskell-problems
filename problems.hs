@@ -49,11 +49,11 @@ flatten (Elem elt) = [elt]
 flatten (List []) = []
 flatten (List list) = concatMap flatten list
 
-
 -- Problem 8
 -- Eliminate consecutive duplicates of list elements.
 -- If a list contains repeated elements they should be replaced with a single copy of the element.
 -- The order of the elements should not be changed.
+-- http://www.haskell.org/haskellwiki/99_questions/1_to_10#Problem_8
 -- NOTE: I could only get this working with Strings, not lists in general.
 compress :: String -> String
 compress = foldl (\x y -> if length x == 0 || (last x) /= y then x++[y] else x) ""
@@ -64,6 +64,7 @@ compress = foldl (\x y -> if length x == 0 || (last x) /= y then x++[y] else x) 
 -- Problem 9
 -- Pack consecutive duplicates of list elements into sublists.
 -- If a list contains repeated elements they should be placed in separate sublists. 
+-- http://www.haskell.org/haskellwiki/99_questions/1_to_10#Problem_9
 pack :: (Eq a) => [a] -> [[a]]
 pack = group
 
@@ -72,5 +73,6 @@ pack = group
 -- to implement the so-called run-length encoding data compression method.
 -- Consecutive duplicates of elements are encoded as lists (N E)
 -- where N is the number of duplicates of the element E. 
+-- http://www.haskell.org/haskellwiki/99_questions/1_to_10#Problem_10
 encode :: (Eq a) => [a] -> [(Int, a)]
 encode list = let groups = group list in zip (map length groups) (map head groups)
