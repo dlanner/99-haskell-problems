@@ -122,3 +122,33 @@ dropEvery list n = concatMap (\(x,y) -> x) filteredList
     where filteredList = filter (\x -> (snd x) `mod` n /= 0 && (snd x) /= 0) listWithIndices
           listWithIndices = foldl (\x y -> x++[([y],1+snd(last x))]) [([],0)] list
 
+-- Problem 17
+-- Split a list into two parts; the length of the first part is given.
+-- Do not use any predefined predicates.
+split :: [a] -> Int -> ([a], [a])
+split list n = (first_n, rest)
+    where first_n = take n list
+          rest = reverse (take ((length list)-n) (reverse list))
+
+-- Problem 18
+-- Extract a slice from a list.
+-- Given two indices, i and k, the slice is the list containing the elements between the i'th and k'th element of the original list (both limits included). Start counting the elements with 1. 
+slice :: [a] -> Int -> Int -> [a]
+slice list i k = concatMap (\(x,y) -> x) filteredList
+    where filteredList = filter withinRange listWithIndices
+          withinRange = (\x -> (snd x) >= i && (snd x) <= k)
+          listWithIndices = foldl (\x y -> x++[([y],1+snd(last x))]) [([],0)] list
+
+-- Problem 19
+-- Rotate a list N places to the left.
+-- Hint: Use the predefined functions length and (++). 
+rotate :: [a] -> Int -> [a]
+rotate list n
+    | n >= 0    = (drop n list) ++ (take n list)
+    | otherwise = let dropAmt = (length list) + n
+                  in drop dropAmt list ++ take dropAmt list
+
+-- Problem 20
+-- Remove the K'th element from a list. 
+removeAt :: Int -> [a] -> (a, [a])
+removeAt n list = (list !! (n-1), take (n-1) list ++ drop n list)
