@@ -44,6 +44,7 @@ isPalindrome word = word == (reverse word)
 -- by replacing each list with its elements (recursively). 
 -- http://www.haskell.org/haskellwiki/99_questions/1_to_10#Problem_7
 data NestedList a = Elem a | List [NestedList a]
+
 flatten :: NestedList a -> [a]
 flatten (Elem elt) = [elt]
 flatten (List []) = []
@@ -58,8 +59,8 @@ flatten (List list) = concatMap flatten list
 compress :: String -> String
 compress = foldl (\x y -> if length x == 0 || (last x) /= y then x++[y] else x) ""
 -- To get it working with polymorphic lists, maybe I have to do something like this:
---compress :: (Monoid m, Eq m) => [m] -> [m]
---compress = foldl (\x y -> if length x == 0 || (last x) /= y then (mappend x [y]) else x) mempty
+-- compress :: (Monoid m, Eq m) => [m] -> [m]
+-- compress = foldl (\x y -> if length x == 0 || (last x) /= y then (mappend x [y]) else x) mempty
 
 -- Problem 9
 -- Pack consecutive duplicates of list elements into sublists.
@@ -75,4 +76,15 @@ pack = group
 -- where N is the number of duplicates of the element E. 
 -- http://www.haskell.org/haskellwiki/99_questions/1_to_10#Problem_10
 encode :: (Eq a) => [a] -> [(Int, a)]
-encode list = let groups = group list in zip (map length groups) (map head groups)
+encode list = let groups = pack list in zip (map length groups) (map head groups)
+
+-- Problem 11
+-- Modified run-length encoding.
+-- Modify the result of problem 10 in such a way that
+-- if an element has no duplicates it is simply copied into the result list.
+-- Only elements with duplicates are transferred as (N E) lists. 
+data Encoding a = Multiple Int a | Single a deriving (Show, Eq)
+
+encodeModified :: (Eq a) => [a] -> [Encoding a]
+encodeModified list = map toEncoding (pack list)
+    where toEncoding = \x -> if (length x) == 1 then Single (head x) else Multiple (length x) (head x)

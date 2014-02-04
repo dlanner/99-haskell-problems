@@ -40,6 +40,23 @@ problem9tests = TestList [ problem9test1 ]
 problem10test1 = encode "aaaabccaadeeee" ~?= [(4,'a'),(1,'b'),(2,'c'),(2,'a'),(1,'d'),(4,'e')]
 problem10tests = TestList [ problem10test1 ]
 
-main = runTestTT $ TestList
-	[ problem1tests, problem2tests, problem3tests, problem4tests, problem5tests
-	, problem6tests, problem7tests, problem8tests, problem9tests, problem10tests ]
+problemtests1_10 = TestList [ problem1tests, problem2tests, problem3tests, problem4tests, problem5tests
+	                        , problem6tests, problem7tests, problem8tests, problem9tests, problem10tests ]
+
+problem11test1 = encodeModified "aaaabccaadeeee" ~?= [Multiple 4 'a',Single 'b',Multiple 2 'c', Multiple 2 'a',Single 'd',Multiple 4 'e']
+problem11tests = TestList [ problem11test1 ]
+
+problem12tests = TestList [  ]
+problem13tests = TestList [  ]
+problem14tests = TestList [  ]
+problem15tests = TestList [  ]
+problem16tests = TestList [  ]
+problem17tests = TestList [  ]
+problem18tests = TestList [  ]
+problem19tests = TestList [  ]
+problem20tests = TestList [  ]
+
+problemtests11_20 = TestList [ problem11tests, problem12tests, problem13tests, problem14tests, problem15tests
+	                         , problem16tests, problem17tests, problem18tests, problem19tests, problem20tests ]
+
+main = runTestTT $ TestList [ problemtests1_10, problemtests11_20 ]
