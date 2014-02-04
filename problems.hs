@@ -96,3 +96,29 @@ decodeModified :: (Eq a) => [Encoding a] -> [a]
 decodeModified list = concatMap decode list
     where decode (Single a) = [a]
           decode (Multiple n a) = take n (cycle [a])
+
+-- Problem 13
+-- Run-length encoding of a list (direct solution).
+-- Implement the so-called run-length encoding data compression method directly.
+-- I.e. don't explicitly create the sublists containing the duplicates, as in problem 9,
+-- but only count them. As in problem P11, simplify the result list by replacing the singleton lists (1 X) by X.
+-- NOTE: Not sure I understand the difference between problems 13 and 11. I think I already did this in problem 11.
+
+-- Problem 14
+-- Duplicate the elements of a list. 
+dupli :: [a] -> [a]
+dupli = concatMap (\x -> [x]++[x])
+
+-- Problem 15
+-- Replicate the elements of a list a given number of times. 
+repli :: [a] -> Int -> [a]
+repli list n = concatMap (\x -> take n (cycle [x])) list
+
+-- Problem 16
+-- Drop every N'th element from a list. 
+-- Ugly, I know.
+dropEvery :: [a] -> Int -> [a]
+dropEvery list n = concatMap (\(x,y) -> x) filteredList
+    where filteredList = filter (\x -> (snd x) `mod` n /= 0 && (snd x) /= 0) listWithIndices
+          listWithIndices = foldl (\x y -> x++[([y],1+snd(last x))]) [([],0)] list
+

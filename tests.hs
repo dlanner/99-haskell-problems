@@ -49,10 +49,17 @@ problem11tests = TestList [ problem11test1 ]
 problem12test1 = decodeModified [Multiple 4 'a',Single 'b',Multiple 2 'c', Multiple 2 'a',Single 'd',Multiple 4 'e'] ~?= "aaaabccaadeeee"
 problem12tests = TestList [ problem12test1 ]
 
-problem13tests = TestList [  ]
-problem14tests = TestList [  ]
-problem15tests = TestList [  ]
-problem16tests = TestList [  ]
+problem13tests = problem11tests
+
+problem14test1 = dupli [1, 2, 3] ~?= [1,1,2,2,3,3]
+problem14tests = TestList [ problem14test1 ]
+
+problem15test1 =repli "abc" 3 ~=? "aaabbbccc"
+problem15tests = TestList [ problem15test1 ]
+
+problem16test1 = dropEvery "abcdefghik" 3 ~=? "abdeghk"
+problem16tests = TestList [ problem16test1 ]
+
 problem17tests = TestList [  ]
 problem18tests = TestList [  ]
 problem19tests = TestList [  ]
