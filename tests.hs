@@ -46,7 +46,9 @@ problemtests1_10 = TestList [ problem1tests, problem2tests, problem3tests, probl
 problem11test1 = encodeModified "aaaabccaadeeee" ~?= [Multiple 4 'a',Single 'b',Multiple 2 'c', Multiple 2 'a',Single 'd',Multiple 4 'e']
 problem11tests = TestList [ problem11test1 ]
 
-problem12tests = TestList [  ]
+problem12test1 = decodeModified [Multiple 4 'a',Single 'b',Multiple 2 'c', Multiple 2 'a',Single 'd',Multiple 4 'e'] ~?= "aaaabccaadeeee"
+problem12tests = TestList [ problem12test1 ]
+
 problem13tests = TestList [  ]
 problem14tests = TestList [  ]
 problem15tests = TestList [  ]

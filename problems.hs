@@ -88,3 +88,11 @@ data Encoding a = Multiple Int a | Single a deriving (Show, Eq)
 encodeModified :: (Eq a) => [a] -> [Encoding a]
 encodeModified list = map toEncoding (pack list)
     where toEncoding = \x -> if (length x) == 1 then Single (head x) else Multiple (length x) (head x)
+
+-- Problem 12
+-- Decode a run-length encoded list.
+-- Given a run-length code list generated as specified in problem 11. Construct its uncompressed version. 
+decodeModified :: (Eq a) => [Encoding a] -> [a]
+decodeModified list = concatMap decode list
+    where decode (Single a) = [a]
+          decode (Multiple n a) = take n (cycle [a])
