@@ -74,6 +74,28 @@ problem20test1 = removeAt 2 "abcd" ~?= ('b',"acd")
 problem20tests = TestList [ problem20test1 ]
 
 problemtests11_20 = TestList [ problem11tests, problem12tests, problem13tests, problem14tests, problem15tests
-	                         , problem16tests, problem17tests, problem18tests, problem19tests, problem20tests ]
+	                           , problem16tests, problem17tests, problem18tests, problem19tests, problem20tests ]
 
-main = runTestTT $ TestList [ problemtests1_10, problemtests11_20 ]
+problem21test1 = insertAt 'X' "abcd" 2 ~?= "aXbcd"
+problem21tests = TestList [ problem21test1 ]
+
+problem22test1 = range 4 9 ~?= [4,5,6,7,8,9]
+problem22tests = TestList [ problem22test1 ]
+
+-- Don't really know how to test IO yet, but my solutions for problems 23, 24, and 25 work.
+problem23tests = TestList [ ]
+problem24tests = TestList [ ]
+problem25tests = TestList [ ]
+
+problem26test1 = combinations 3 "abcdef" ~?= ["abc","abd","acd","bcd","abe","ace","bce","ade","bde","cde","abf","acf","bcf","adf","bdf","cdf","aef","bef","cef","def"]
+problem26tests = TestList [ problem26test1 ]
+
+problem27tests = TestList [ ]
+problem28tests = TestList [ ]
+problem29tests = TestList [ ]
+problem30tests = TestList [ ]
+
+problemtests21_30 = TestList [ problem21tests, problem22tests, problem23tests, problem24tests, problem25tests
+                             , problem26tests, problem27tests, problem28tests, problem29tests, problem30tests ]
+
+main = runTestTT $ TestList [ problemtests1_10, problemtests11_20, problemtests21_30 ]
