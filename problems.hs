@@ -1,7 +1,8 @@
 module Problems where
 
 import Data.List
-import System.Random
+import System.Random (newStdGen, randomRs)
+import Control.Monad (guard)
 
 -- Problem 1 
 -- Find the last element of a list. 
@@ -222,4 +223,10 @@ combinations k list = filter (\x -> length x == k) (subsequences list)
 areEqual :: (Ord a) => [a] -> [a] -> Bool
 areEqual a b = sort a == sort b
 
-disjoint_sets [2,3,4] list = [ nub [a]++[b]++[c] | a <- (combinations 2 list), b <- (combinations 3 list), c <- (combinations 4 list), areEqual (a++b++c) list ]
+disjoint_sets :: (Eq a, Num a, Ord b) => [a] -> [b] -> [[[b]]]
+disjoint_sets [2,3,4] list = do
+   a <- combinations 2 list
+   b <- combinations 3 list
+   c <- combinations 4 list
+   guard (areEqual (a++b++c) list)
+   return (nub [a]++[b]++[c])
