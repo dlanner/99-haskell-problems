@@ -90,7 +90,9 @@ problem25tests = TestList [ ]
 problem26test1 = combinations 3 "abcdef" ~?= ["abc","abd","acd","bcd","abe","ace","bce","ade","bde","cde","abf","acf","bcf","adf","bdf","cdf","aef","bef","cef","def"]
 problem26tests = TestList [ problem26test1 ]
 
-problem27tests = TestList [ ]
+problem27test1 = length (disjoint_sets [2,3,4] ["aldo","beat","carla","david","evi","flip","gary","hugo","ida"]) ~?= 1260
+problem27tests = TestList [ problem27test1 ]
+
 problem28tests = TestList [ ]
 problem29tests = TestList [ ]
 problem30tests = TestList [ ]
