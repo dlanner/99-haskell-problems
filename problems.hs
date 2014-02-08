@@ -217,16 +217,22 @@ combinations k list = filter (\x -> length x == k) (subsequences list)
 -- You may find more about this combinatorial problem in a good book on discrete mathematics
 -- under the term "multinomial coefficients". 
 
--- Part a:
-
 -- http://stackoverflow.com/a/15319164/2954849
 areEqual :: (Ord a) => [a] -> [a] -> Bool
 areEqual a b = sort a == sort b
 
-disjoint_sets :: (Eq a, Num a, Ord b) => [a] -> [b] -> [[[b]]]
+-- Part a:
+disjoint_sets :: (Ord b) => [Int] -> [b] -> [[[b]]]
 disjoint_sets [2,3,4] list = do
    a <- combinations 2 list
    b <- combinations 3 list
    c <- combinations 4 list
    guard (areEqual (a++b++c) list)
    return (nub [a]++[b]++[c])
+
+-- Part b (almost works): 
+disjoint_sets partitionSizes list = filter validPartition $ subsequences . subsequences $ list
+    where validPartition x = (matchesSizes x) && (matchesList x) && (notEmpty x)
+          matchesSizes x = map length x == partitionSizes
+          matchesList x = areEqual list (concat x)
+          notEmpty = notElem []
