@@ -91,7 +91,11 @@ problem26test1 = combinations 3 "abcdef" ~?= ["abc","abd","acd","bcd","abe","ace
 problem26tests = TestList [ problem26test1 ]
 
 problem27test1 = length (disjoint_sets [2,3,4] ["aldo","beat","carla","david","evi","flip","gary","hugo","ida"]) ~?= 1260
-problem27tests = TestList [ problem27test1 ]
+problem27test2 = disjoint_sets [1,1,1] ["aldo","beat","carla"] ~?= [[["aldo"],["beat"],["carla"]],[["beat"],["aldo"],["carla"]],[["carla"],["beat"],["aldo"]],[["beat"],["carla"],["aldo"]],[["carla"],["aldo"],["beat"]],[["aldo"],["carla"],["beat"]]]
+problem27test3 = disjoint_sets [1,2] ["aldo","beat","carla"] ~?= [[["beat"],["aldo","carla"]],[["aldo"],["beat","carla"]],[["carla"],["beat","aldo"]]]
+problem27test4 = disjoint_sets [2,1] ["aldo","beat","carla"] ~?= [[["aldo","beat"],["carla"]],[["carla","beat"],["aldo"]],[["carla","aldo"],["beat"]]]
+problem27test5 = disjoint_sets [3] ["aldo","beat","carla"] ~?= [[["aldo","beat","carla"]]]
+problem27tests = TestList [ problem27test1, problem27test2, problem27test3, problem27test4, problem27test5 ]
 
 problem28tests = TestList [ ]
 problem29tests = TestList [ ]

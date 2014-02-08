@@ -221,6 +221,9 @@ combinations k list = filter (\x -> length x == k) (subsequences list)
 areEqual :: (Ord a) => [a] -> [a] -> Bool
 areEqual a b = sort a == sort b
 
+areDeeplyEqual :: (Ord a) => [[a]] -> [[a]] -> Bool
+areDeeplyEqual a b = map sort a == map sort b
+
 -- Part a:
 disjoint_sets :: (Ord b) => [Int] -> [b] -> [[[b]]]
 disjoint_sets [2,3,4] list = do
@@ -230,9 +233,9 @@ disjoint_sets [2,3,4] list = do
    guard (areEqual (a++b++c) list)
    return (nub [a]++[b]++[c])
 
--- Part b (almost works): 
-disjoint_sets partitionSizes list = filter validPartition $ subsequences . subsequences $ list
-    where validPartition x = (matchesSizes x) && (matchesList x) && (notEmpty x)
-          matchesSizes x = map length x == partitionSizes
+-- Part b:
+disjoint_sets partitionSizes list = nubBy areDeeplyEqual $ filter validPartition $ nub $ combs
+    where validPartition x = (matchesList x) && (matchesSizes x)
           matchesList x = areEqual list (concat x)
-          notEmpty = notElem []
+          matchesSizes x = map length x == partitionSizes
+          combs = concatMap subsequences $ map subsequences $ permutations list
