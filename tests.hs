@@ -97,7 +97,10 @@ problem27test4 = disjoint_sets [2,1] ["aldo","beat","carla"] ~?= [[["aldo","beat
 problem27test5 = disjoint_sets [3] ["aldo","beat","carla"] ~?= [[["aldo","beat","carla"]]]
 problem27tests = TestList [ problem27test1, problem27test2, problem27test3, problem27test4, problem27test5 ]
 
-problem28tests = TestList [ ]
+problem28test1 = lsort ["abc","de","fgh","de","ijkl","mn","o"] ~?= ["o","de","de","mn","abc","fgh","ijkl"]
+problem28test2 = lfsort ["abc", "de", "fgh", "de", "ijkl", "mn", "o"] ~?= ["ijkl","o","abc","fgh","de","de","mn"]
+problem28tests = TestList [ problem28test1, problem28test2 ]
+
 problem29tests = TestList [ ]
 problem30tests = TestList [ ]
 

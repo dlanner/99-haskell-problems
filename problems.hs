@@ -3,6 +3,7 @@ module Problems where
 import Data.List
 import System.Random (newStdGen, randomRs)
 import Control.Monad (guard)
+import Data.Function (on)
 
 -- Problem 1 
 -- Find the last element of a list. 
@@ -201,15 +202,17 @@ combinations k list = filter (\x -> length x == k) (subsequences list)
 -- a) In how many ways can a group of 9 people work in 3 disjoint subgroups of 2, 3 and 4 persons?
 -- Write a function that generates all the possibilities and returns them in a list.
 -- Example:
--- * (group3 '(aldo beat carla david evi flip gary hugo ida))
--- ( ( (ALDO BEAT) (CARLA DAVID EVI) (FLIP GARY HUGO IDA) )
--- ... )
+-- P27> group [2,3,4] ["aldo","beat","carla","david","evi","flip","gary","hugo","ida"]
+-- [[["aldo","beat"],["carla","david","evi"],["flip","gary","hugo","ida"]],...]
+-- (altogether 1260 solutions) 
+--
 -- b) Generalize the above predicate in a way that we can specify a list of group sizes
 -- and the predicate will return a list of groups.
 -- Example:
--- * (group '(aldo beat carla david evi flip gary hugo ida) '(2 2 5))
--- ( ( (ALDO BEAT) (CARLA DAVID) (EVI FLIP GARY HUGO IDA) )
--- ... )
+-- 27> group [2,2,5] ["aldo","beat","carla","david","evi","flip","gary","hugo","ida"]
+-- [[["aldo","beat"],["carla","david"],["evi","flip","gary","hugo","ida"]],...]
+-- (altogether 756 solutions)
+--
 -- Note that we do not want permutations of the group members; i.e. ((ALDO BEAT) ...)
 -- is the same solution as ((BEAT ALDO) ...).
 -- However, we make a difference between ((ALDO BEAT) (CARLA DAVID) ...)
@@ -239,3 +242,26 @@ disjoint_sets partitionSizes list = nubBy areDeeplyEqual $ filter validPartition
           matchesList x = areEqual list (concat x)
           matchesSizes x = map length x == partitionSizes
           combs = concatMap subsequences $ map subsequences $ permutations list
+
+-- Problem 28
+-- Sorting a list of lists according to length of sublists
+-- a) We suppose that a list contains elements that are lists themselves.
+-- The objective is to sort the elements of this list according to their length.
+-- E.g. short lists first, longer lists later, or vice versa.
+-- Example:
+-- Prelude>lsort ["abc","de","fgh","de","ijkl","mn","o"]
+-- Prelude>["o","de","de","mn","abc","fgh","ijkl"]
+--
+-- b) Again, we suppose that a list contains elements that are lists themselves.
+-- But this time the objective is to sort the elements of this list according to their length frequency;
+-- i.e., in the default, where sorting is done ascendingly,
+-- lists with rare lengths are placed first, others with a more frequent length come later. 
+
+-- Part a:
+lsort :: (Ord a) => [[a]] -> [[a]]
+lsort = sortBy ((compare) `on` length)
+
+-- Part b:
+lfsort list = sortBy frequencySort list
+    where frequencySort = (compare) `on` frequency
+          frequency = (\x -> length (filter (\y -> length y == length x) list))
