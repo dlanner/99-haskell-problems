@@ -265,3 +265,14 @@ lsort = sortBy ((compare) `on` length)
 lfsort list = sortBy frequencySort list
     where frequencySort = (compare) `on` frequency
           frequency = (\x -> length (filter (\y -> length y == length x) list))
+
+-- Problem 31
+-- Determine whether a given integer number is prime. 
+factors :: Int -> [Int]
+factors n = [ x | x <- [1..n], y <- [1..n], x * y == n ]
+
+nonPrimeFactors :: Int -> [Int]
+nonPrimeFactors n = filter (\x -> x /= 1 && x/= n) (factors n)
+
+isPrime :: Int -> Bool
+isPrime n = nonPrimeFactors n == []

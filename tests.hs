@@ -101,7 +101,25 @@ problem28test1 = lsort ["abc","de","fgh","de","ijkl","mn","o"] ~?= ["o","de","de
 problem28test2 = lfsort ["abc", "de", "fgh", "de", "ijkl", "mn", "o"] ~?= ["ijkl","o","abc","fgh","de","de","mn"]
 problem28tests = TestList [ problem28test1, problem28test2 ]
 
-problemtests21_30 = TestList [ problem21tests, problem22tests, problem23tests, problem24tests, problem25tests
+problemtests21_28 = TestList [ problem21tests, problem22tests, problem23tests, problem24tests, problem25tests
                              , problem26tests, problem27tests, problem28tests ]
 
-main = runTestTT $ TestList [ problemtests1_10, problemtests11_20, problemtests21_30 ]
+problem31test1 = isPrime 7 ~?= True
+problem31tests = TestList [ problem31test1 ]
+
+problem32tests = TestList [ ]
+problem33tests = TestList [ ]
+problem34tests = TestList [ ]
+problem35tests = TestList [ ]
+problem36tests = TestList [ ]
+problem37tests = TestList [ ]
+problem38tests = TestList [ ]
+problem39tests = TestList [ ]
+problem40tests = TestList [ ]
+problem41tests = TestList [ ]
+
+problemtests31_41 = TestList [ problem31tests, problem32tests, problem33tests, problem34tests, problem35tests
+                             , problem36tests, problem37tests, problem38tests, problem39tests, problem40tests
+                             , problem41tests ]
+
+main = runTestTT $ TestList [ problemtests1_10, problemtests11_20, problemtests21_28, problemtests31_41 ]
