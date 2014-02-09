@@ -101,10 +101,7 @@ problem28test1 = lsort ["abc","de","fgh","de","ijkl","mn","o"] ~?= ["o","de","de
 problem28test2 = lfsort ["abc", "de", "fgh", "de", "ijkl", "mn", "o"] ~?= ["ijkl","o","abc","fgh","de","de","mn"]
 problem28tests = TestList [ problem28test1, problem28test2 ]
 
-problem29tests = TestList [ ]
-problem30tests = TestList [ ]
-
 problemtests21_30 = TestList [ problem21tests, problem22tests, problem23tests, problem24tests, problem25tests
-                             , problem26tests, problem27tests, problem28tests, problem29tests, problem30tests ]
+                             , problem26tests, problem27tests, problem28tests ]
 
 main = runTestTT $ TestList [ problemtests1_10, problemtests11_20, problemtests21_30 ]
