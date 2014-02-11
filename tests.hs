@@ -113,8 +113,13 @@ problem32test3 = extendedEuclidGCF (-3) (-6) ~?= 3
 problem32test4 = extendedEuclidGCF (-3) 6 ~?= 3
 problem32tests = TestList [ problem32test1, problem32test2, problem32test3, problem32test4 ]
 
-problem33tests = TestList [ ]
-problem34tests = TestList [ ]
+problem33test1 = coprime 35 64 ~?= True
+problem33tests = TestList [ problem33test1 ]
+
+problem34test1 = totient 10 ~?= 4
+problem34test2 = totient 1 ~?= 1
+problem34tests = TestList [ problem34test1, problem34test2 ]
+
 problem35tests = TestList [ ]
 problem36tests = TestList [ ]
 problem37tests = TestList [ ]
