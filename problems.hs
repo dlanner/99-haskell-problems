@@ -276,3 +276,13 @@ nonPrimeFactors n = filter (\x -> x /= 1 && x/= n) (factors n)
 
 isPrime :: Int -> Bool
 isPrime n = nonPrimeFactors n == []
+
+euclidGCF :: Int -> Int -> Int
+euclidGCF a b = if a == b then a else (euclidGCF (abs (a-b)) (min a b))
+
+extendedEuclidGCF :: Int -> Int -> Int
+extendedEuclidGCF a b = extendedEuclidGCFHelper a b 1 0 0 1
+    where extendedEuclidGCFHelper old_remainder remainder old_s s old_t t
+            | remainder /= 0 = let quotient = (old_remainder `div` remainder)
+                               in extendedEuclidGCFHelper remainder (old_remainder - quotient * remainder) s (old_s - quotient * s) t (old_t - quotient * t)
+            | otherwise      = abs old_remainder

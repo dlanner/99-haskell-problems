@@ -107,7 +107,12 @@ problemtests21_28 = TestList [ problem21tests, problem22tests, problem23tests, p
 problem31test1 = isPrime 7 ~?= True
 problem31tests = TestList [ problem31test1 ]
 
-problem32tests = TestList [ ]
+problem32test1 = euclidGCF 36 63 ~?= 9
+problem32test2 = extendedEuclidGCF 36 63 ~?= 9
+problem32test3 = extendedEuclidGCF (-3) (-6) ~?= 3
+problem32test4 = extendedEuclidGCF (-3) 6 ~?= 3
+problem32tests = TestList [ problem32test1, problem32test2, problem32test3, problem32test4 ]
+
 problem33tests = TestList [ ]
 problem34tests = TestList [ ]
 problem35tests = TestList [ ]
