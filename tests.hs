@@ -126,7 +126,10 @@ problem35tests = TestList [ problem35test1 ]
 problem36test1 = prime_factors_mult 315 ~?= [(3,2),(5,1),(7,1)]
 problem36tests = TestList [ problem36test1 ]
 
-problem37tests = TestList [ ]
+problem37test1 = improvedTotient 10 ~?= 4
+problem37test2 = improvedTotient 1 ~?= 1
+problem37tests = TestList [ problem37test1, problem37test2 ]
+
 problem38tests = TestList [ ]
 problem39tests = TestList [ ]
 problem40tests = TestList [ ]
