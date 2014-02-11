@@ -271,11 +271,11 @@ lfsort list = sortBy frequencySort list
 factors :: Int -> [Int]
 factors n = [ x | x <- [1..n], y <- [1..n], x * y == n ]
 
-nonPrimeFactors :: Int -> [Int]
-nonPrimeFactors n = filter (\x -> x /= 1 && x/= n) (factors n)
+nontrivialFactors :: Int -> [Int]
+nontrivialFactors n = filter (\x -> x /= 1 && x/= n) (factors n)
 
 isPrime :: Int -> Bool
-isPrime n = nonPrimeFactors n == []
+isPrime n = nontrivialFactors n == []
 
 euclidGCF :: Int -> Int -> Int
 euclidGCF a b = if a == b then a else (euclidGCF (abs (a-b)) (min a b))
@@ -299,3 +299,14 @@ coprime a b = extendedEuclidGCF a b == 1
 -- Example: m = 10: r = 1,3,7,9; thus phi(m) = 4. Note the special case: phi(1) = 1. 
 totient :: Int -> Int
 totient a = length [ b | b <- [1..a], coprime a b ]
+
+-- Problem 35
+-- Determine the prime factors of a given positive integer.
+-- Construct a flat list containing the prime factors in ascending order.
+-- This is probably really inefficient, I know.
+primeFactors :: Int -> [Int]
+primeFactors n
+    | isPrime n = [n]
+    | otherwise = let next_prime = head (nontrivialFactors n)
+                  in next_prime : primeFactors (n `div` next_prime)
+  

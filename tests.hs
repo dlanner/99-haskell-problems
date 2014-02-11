@@ -120,7 +120,9 @@ problem34test1 = totient 10 ~?= 4
 problem34test2 = totient 1 ~?= 1
 problem34tests = TestList [ problem34test1, problem34test2 ]
 
-problem35tests = TestList [ ]
+problem35test1 = primeFactors 315 ~?= [3, 3, 5, 7]
+problem35tests = TestList [ problem35test1 ]
+
 problem36tests = TestList [ ]
 problem37tests = TestList [ ]
 problem38tests = TestList [ ]
