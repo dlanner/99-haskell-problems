@@ -357,3 +357,16 @@ primesR a b = filter isPrime [a..b]
 -- Write a predicate to find the two prime numbers that sum up to a given even integer. 
 goldbach :: Int -> (Int, Int)
 goldbach n = head [ (a, b) | a <- primesR 2 n, b <- primesR 2 n, a + b == n ]
+
+-- Problem 41
+-- Given a range of integers by its lower and upper limit,
+-- print a list of all even numbers and their Goldbach composition.
+-- In most cases, if an even number is written as the sum of two prime numbers,
+-- one of them is very small. Very rarely, the primes are both bigger than say 50.
+-- Try to find out how many such cases there are in the range 2..3000. 
+goldbachList :: Int -> Int -> [(Int, Int)]
+goldbachList a b = map goldbach (filter even [a..b])
+
+-- goldbachList with a prime lower bound
+goldbachList' :: Int -> Int -> Int -> [(Int, Int)]
+goldbachList' a b prime_bound = filter (\(x,y) -> x > prime_bound && y > prime_bound) (goldbachList a b)
