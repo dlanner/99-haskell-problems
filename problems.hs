@@ -310,3 +310,8 @@ primeFactors n
     | otherwise = let next_prime = head (nontrivialFactors n)
                   in next_prime : primeFactors (n `div` next_prime)
   
+-- Problem 36
+-- Determine the prime factors of a given positive integer.
+-- Construct a list containing the prime factors and their multiplicity.
+prime_factors_mult n = let groups = group $ primeFactors n
+                       in zip (map head groups) (map length groups)

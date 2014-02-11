@@ -123,7 +123,9 @@ problem34tests = TestList [ problem34test1, problem34test2 ]
 problem35test1 = primeFactors 315 ~?= [3, 3, 5, 7]
 problem35tests = TestList [ problem35test1 ]
 
-problem36tests = TestList [ ]
+problem36test1 = prime_factors_mult 315 ~?= [(3,2),(5,1),(7,1)]
+problem36tests = TestList [ problem36test1 ]
+
 problem37tests = TestList [ ]
 problem38tests = TestList [ ]
 problem39tests = TestList [ ]
