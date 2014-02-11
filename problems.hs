@@ -331,3 +331,18 @@ improvedTotient :: Int -> Int
 improvedTotient 1 = 1
 improvedTotient a = product $ map phiStep (prime_factors_mult a)
     where phiStep (p, m) = (p - 1) * p ^ (m - 1)
+
+-- Problem 38 
+-- Compare the two methods of calculating Euler's totient function.
+-- Use the solutions of problems 34 and 37 to compare the algorithms.
+-- Take the number of reductions as a measure for efficiency.
+-- Try to calculate phi(10090) as an example.
+-- I have noted that for 100000 (an order of magnitude greater than the test number suggested),
+-- improvedTotient is much faster than totient. 10090 is faster with regular totient somehow.
+
+-- Problem 39
+-- A list of prime numbers.
+-- Given a range of integers by its lower and upper limit,
+-- construct a list of all prime numbers in that range. 
+primesR :: Int -> Int -> [Int]
+primesR a b = filter isPrime [a..b]

@@ -130,13 +130,16 @@ problem37test1 = improvedTotient 10 ~?= 4
 problem37test2 = improvedTotient 1 ~?= 1
 problem37tests = TestList [ problem37test1, problem37test2 ]
 
-problem38tests = TestList [ ]
-problem39tests = TestList [ ]
+-- Problem 38 is not an actual problem
+
+problem39test1 = primesR 10 20 ~?= [11,13,17,19]
+problem39tests = TestList [ problem39test1 ]
+
 problem40tests = TestList [ ]
 problem41tests = TestList [ ]
 
 problemtests31_41 = TestList [ problem31tests, problem32tests, problem33tests, problem34tests, problem35tests
-                             , problem36tests, problem37tests, problem38tests, problem39tests, problem40tests
+                             , problem36tests, problem37tests, problem39tests, problem40tests
                              , problem41tests ]
 
 main = runTestTT $ TestList [ problemtests1_10, problemtests11_20, problemtests21_28, problemtests31_41 ]
