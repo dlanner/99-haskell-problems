@@ -313,5 +313,6 @@ primeFactors n
 -- Problem 36
 -- Determine the prime factors of a given positive integer.
 -- Construct a list containing the prime factors and their multiplicity.
+prime_factors_mult :: Int -> [(Int, Int)]
 prime_factors_mult n = let groups = group $ primeFactors n
                        in zip (map head groups) (map length groups)
