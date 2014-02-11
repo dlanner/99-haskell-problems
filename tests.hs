@@ -135,7 +135,9 @@ problem37tests = TestList [ problem37test1, problem37test2 ]
 problem39test1 = primesR 10 20 ~?= [11,13,17,19]
 problem39tests = TestList [ problem39test1 ]
 
-problem40tests = TestList [ ]
+problem40test1 = goldbach 28 ~?= (5, 23)
+problem40tests = TestList [ problem40test1 ]
+
 problem41tests = TestList [ ]
 
 problemtests31_41 = TestList [ problem31tests, problem32tests, problem33tests, problem34tests, problem35tests
