@@ -110,6 +110,7 @@ lsort :: (Ord a) => [[a]] -> [[a]]
 lsort = sortBy ((compare) `on` length)
 
 -- Part b:
+lfsort :: (Ord a) => [[a]] -> [[a]]
 lfsort list = sortBy frequencySort list
     where frequencySort = (compare) `on` frequency
           frequency = (\x -> length (filter (\y -> length y == length x) list))
