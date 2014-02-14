@@ -41,7 +41,7 @@ problem41test1 = goldbachList 9 20 ~?= [(3,7),(5,7),(3,11),(3,13),(5,13),(3,17)]
 problem41test2 = goldbachList' 9 20 4 ~?= [(5,7),(5,13)]
 problem41tests = TestList [ problem41test1, problem41test2 ]
 
-problemtests31_41 = TestList [ problem31tests, problem32tests, problem33tests, problem34tests, problem35tests
-                             , problem36tests, problem37tests, problem39tests, problem40tests, problem41tests ]
+tests = TestList [ problem31tests, problem32tests, problem33tests, problem34tests, problem35tests
+                 , problem36tests, problem37tests, problem39tests, problem40tests, problem41tests ]
 
-main = runTestTT problemtests31_41
+main = runTestTT tests

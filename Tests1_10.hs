@@ -43,7 +43,7 @@ problem9tests = TestList [ problem9test1 ]
 problem10test1 = encode "aaaabccaadeeee" ~?= [(4,'a'),(1,'b'),(2,'c'),(2,'a'),(1,'d'),(4,'e')]
 problem10tests = TestList [ problem10test1 ]
 
-problemtests1_10 = TestList [ problem1tests, problem2tests, problem3tests, problem4tests, problem5tests
-                          , problem6tests, problem7tests, problem8tests, problem9tests, problem10tests ]
+tests = TestList [ problem1tests, problem2tests, problem3tests, problem4tests, problem5tests
+                 , problem6tests, problem7tests, problem8tests, problem9tests, problem10tests ]
 
-main = runTestTT problemtests1_10
+main = runTestTT tests

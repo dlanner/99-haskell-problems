@@ -55,6 +55,6 @@ problem48tests = TestList []
 problem49tests = TestList []
 problem50tests = TestList []
 
-problemtests46_50 = TestList [ problem46tests, problem47tests, problem48tests, problem49tests, problem50tests ]
+tests = TestList [ problem46tests, problem47tests, problem48tests, problem49tests, problem50tests ]
 
-main = runTestTT problemtests46_50
+main = runTestTT tests

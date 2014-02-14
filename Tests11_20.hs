@@ -33,7 +33,7 @@ problem19tests = TestList [ problem19test1, problem19test2 ]
 problem20test1 = removeAt 2 "abcd" ~?= ('b',"acd")
 problem20tests = TestList [ problem20test1 ]
 
-problemtests11_20 = TestList [ problem11tests, problem12tests, problem13tests, problem14tests, problem15tests
-                             , problem16tests, problem17tests, problem18tests, problem19tests, problem20tests ]
+tests = TestList [ problem11tests, problem12tests, problem13tests, problem14tests, problem15tests
+                 , problem16tests, problem17tests, problem18tests, problem19tests, problem20tests ]
 
-main = runTestTT problemtests11_20
+main = runTestTT tests
